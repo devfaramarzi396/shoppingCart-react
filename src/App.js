@@ -7,8 +7,6 @@ import Products from './pages/Products/Index';
 function App() {
   return (
     <>
-
-
       <BrowserRouter>
         <Header />
         <div className="container">
