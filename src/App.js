@@ -3,20 +3,25 @@ import Header from "./components/Header"
 import Home from './pages/Home/Index';
 import Products from './pages/Products/Index';
 
+import store from './pages/redux/store';
+import { Provider } from 'react-redux';
+
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
-        <div className="container">
-          <div className="row">
-            <Routes>
-              <Route path="/" element={<Home />} exact />
-              <Route path='/products' element={<Products />} />
-            </Routes>
+        <Provider store={store}>
+          <Header />
+          <div className="container mt-3">
+            <div className="row">
+              <Routes>
+                <Route path="/" element={<Home />} exact />
+                <Route path='/products' element={<Products />} />
+              </Routes>
+            </div>
           </div>
-        </div>
+        </Provider>
       </BrowserRouter>
 
     </>
