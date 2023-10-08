@@ -1,15 +1,39 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getProducts } from "../redux/products/action"
+import { setCart } from "../redux/cart/action";
 
 const Products = () => {
     const { products } = useSelector((state => state.product))
     const dispatch = useDispatch();
 
+    const handleAddToCart = (product) => {
+        console.log('click ...');
+        dispatch(setCart(product))
+    }
+   
     useEffect(() => {
         let myData = [
             {
                 id: 1,
+                name: "Samsung Galaxy A31",
+                description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+                image:
+                    "https://dkstatics-public.digikala.com/digikala-products/120415904.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_90",
+                price: 700,
+            },
+            {
+                id: 2,
+                name: "Redmi Note 8",
+                description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+                image:
+                    "https://dkstatics-public.digikala.com/digikala-products/113846203.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_90",
+                price: 600,
+            },
+
+
+            {
+                id: 3,
                 name: "Samsung Galaxy S20",
                 description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
                 image:
@@ -18,30 +42,13 @@ const Products = () => {
             },
 
             {
-                id: 2,
+                id: 4,
                 name: "iPhone 13 Pro",
                 description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
                 image: "https://dkstatics-public.digikala.com/digikala-products/9f5d8f6583a7289a096a9180ac88708856f4bd8f_1607433653.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_90",
                 price: 500,
-            },
+            }
 
-            {
-                id: 3,
-                name: "Redmi Note 8",
-                description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-                image:
-                    "https://dkstatics-public.digikala.com/digikala-products/113846203.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_90",
-                price: 600,
-            },
-
-            {
-                id: 4,
-                name: "Samsung Galaxy A31",
-                description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-                image:
-                    "https://dkstatics-public.digikala.com/digikala-products/120415904.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_90",
-                price: 700,
-            },
         ];
         fetch('https://jsonplaceholder.typicode.com/photos')
             .then(res => res.json())
@@ -51,6 +58,8 @@ const Products = () => {
             })
             .catch(err => console.log(err.message))
     }, [dispatch]);
+
+   
 
     return (
         <div className="container">
@@ -67,7 +76,7 @@ const Products = () => {
                                 </p>
                             </div>
                             <div className="card-footer d-flex justify-content-between">
-                                <button className="btn btn-sm btn-outline-success">
+                                <button onClick={() => handleAddToCart(product)} className="btn btn-sm btn-outline-success">
                                     Add to cart
                                 </button>
                                 <span>{product.price}</span>
