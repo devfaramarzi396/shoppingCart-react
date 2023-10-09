@@ -1,8 +1,15 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setIncrement } from "../redux/cart/action";
 
 const ShoppingCart = () => {
     const { cart } = useSelector((state => state.shoppingCart));
+    const dispatch = useDispatch()
 
+    const handleIncrement = (productId) => {
+
+        dispatch(setIncrement(productId))
+
+    }
     return (
         <div className="container">
             <div className="row mt-5">
@@ -39,7 +46,7 @@ const ShoppingCart = () => {
                                         </td>
                                         <td className="align-middle">{product.price}</td>
                                         <td className="align-middle">
-                                            <button className="btn btn-sm btn-dark me-2">
+                                            <button onClick={() => handleIncrement(product.id)} className="btn btn-sm btn-dark me-2">
                                                 +
                                             </button>
                                             <span>{product.qty}</span>
