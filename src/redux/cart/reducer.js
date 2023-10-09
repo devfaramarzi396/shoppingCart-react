@@ -20,14 +20,14 @@ const cartReducer = (state = initialState, action) => {
         case INCREMENT:
 
             state.cart = state.cart.map(p => p.id === action.payload ? { ...p, qty: p.qty += 1 } : p)
-            console.log('inc', state.cart);
+            
 
             return {
                 ...state, cart: state.cart
             }
         case DECREMENT:
             state.cart = state.cart.map(p => p.id === action.payload ? { ...p, qty: p.qty -= 1 } : p)
-            console.log('dec', state.cart);
+          
             return {
                 ...state, cart: state.cart
             }

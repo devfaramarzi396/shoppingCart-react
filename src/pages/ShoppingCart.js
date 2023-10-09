@@ -6,7 +6,7 @@ const ShoppingCart = () => {
     const dispatch = useDispatch()
 
     const handleIncrement = (productId) => {
-        
+
         dispatch(setIncrement(productId))
     }
 
@@ -18,7 +18,11 @@ const ShoppingCart = () => {
         <div className="container">
             <div className="row mt-5">
                 <div className="col-lg-12 pl-3 pt-3">
-                    {cart.length === 0 ? <p>The Shopping Cart is Empty</p> :
+                    {cart.length === 0 ?
+                        <div class="alert alert-warning" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill"></i> The Shopping Cart is Empty
+                        </div>
+                        :
 
                         <table className="table table-hover border bg-white">
                             <thead>
