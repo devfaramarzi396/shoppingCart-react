@@ -1,14 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setIncrement } from "../redux/cart/action";
+import { setDecrement, setIncrement } from "../redux/cart/action";
 
 const ShoppingCart = () => {
     const { cart } = useSelector((state => state.shoppingCart));
     const dispatch = useDispatch()
 
     const handleIncrement = (productId) => {
-
+        
         dispatch(setIncrement(productId))
+    }
 
+    const handleDecrement = (productId) => {
+
+        dispatch(setDecrement(productId))
     }
     return (
         <div className="container">
@@ -50,7 +54,7 @@ const ShoppingCart = () => {
                                                 +
                                             </button>
                                             <span>{product.qty}</span>
-                                            <button className="btn btn-sm btn-dark ms-2">
+                                            <button onClick={() => handleDecrement(product.id)} className="btn btn-sm btn-dark ms-2">
                                                 -
                                             </button>
                                         </td>
@@ -66,7 +70,7 @@ const ShoppingCart = () => {
                                     <td>
                                         <a href="/" className="btn btn-dark">Clear Cart</a>
                                     </td>
-                                    <td colspan="2" className="hidden-xs"></td>
+                                    <td colSpan="2" className="hidden-xs"></td>
                                     <td className="hidden-xs text-center" style={{ width: '15%' }}>
                                         <strong>Total : {cart.reduce((a, c) => {
                                             return a + c.price * c.qty
