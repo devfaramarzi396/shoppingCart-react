@@ -26,8 +26,14 @@ const cartReducer = (state = initialState, action) => {
                 ...state, cart: state.cart
             }
         case DECREMENT:
-            state.cart = state.cart.map(p => p.id === action.payload ? { ...p, qty: p.qty -= 1 } : p)
-          
+            const findProduct = state.cart.find(p => p.id === action.payload)
+            if (findProduct.qty > 1) {
+                state.cart = state.cart.map(p => p.id === action.payload ? { ...p, qty: p.qty -= 1 } : p)
+
+            } else {
+                state.cart = state.cart
+            }
+            console.log('dec', state.cart);
             return {
                 ...state, cart: state.cart
             }
