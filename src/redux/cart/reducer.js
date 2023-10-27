@@ -1,4 +1,4 @@
-import { ADD_TO_CART, INCREMENT, DECREMENT, CLEAR_FROM_CART } from "./action";
+import { ADD_TO_CART, INCREMENT, DECREMENT, CLEAR_CART, DELETE_FROM_CART } from "./action";
 
 const initialState = {
     cart: []
@@ -37,7 +37,13 @@ const cartReducer = (state = initialState, action) => {
             return {
                 ...state, cart: state.cart
             }
-        case CLEAR_FROM_CART:
+            case DELETE_FROM_CART:
+                state.cart=state.cart.filter(p=>p.id !== action.payload)
+                return{
+                    ...state,
+                    cart:state.cart
+                }
+        case CLEAR_CART:
             return {
                 ...state,
                 cart: []

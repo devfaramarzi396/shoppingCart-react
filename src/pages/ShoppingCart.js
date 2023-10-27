@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setClear, setDecrement, setIncrement } from "../redux/cart/action";
+import { setClear, setDecrement, setDelete, setIncrement } from "../redux/cart/action";
 
 const ShoppingCart = () => {
     const { cart } = useSelector((state => state.shoppingCart));
@@ -14,7 +14,10 @@ const ShoppingCart = () => {
 
         dispatch(setDecrement(productId))
     }
-    const handleClearFromCart=()=>{
+    const handleDelte = (productId) => {
+        dispatch(setDelete(productId))
+    }
+    const handleClearFromCart = () => {
         dispatch(setClear())
     }
     return (
@@ -67,7 +70,7 @@ const ShoppingCart = () => {
                                         </td>
                                         <td className="align-middle">{product.price * product.qty}</td>
                                         <td className="align-middle" style={{ width: '15%' }}>
-                                            <button className="btn btn-danger btn-sm">delete</button>
+                                            <button onClick={() => handleDelte(product.id)} className="btn btn-danger btn-sm">delete</button>
                                         </td>
                                     </tr>
                                 ))}
@@ -75,7 +78,7 @@ const ShoppingCart = () => {
                             <tfoot>
                                 <tr>
                                     <td>
-                                        <button onClick={()=> handleClearFromCart()} className="btn btn-dark">Clear Cart</button>
+                                        <button onClick={() => handleClearFromCart()} className="btn btn-dark">Clear Cart</button>
                                     </td>
                                     <td colSpan="2" className="hidden-xs"></td>
                                     <td className="hidden-xs text-center" style={{ width: '15%' }}>

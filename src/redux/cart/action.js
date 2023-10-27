@@ -1,7 +1,8 @@
 export const ADD_TO_CART = "ADD_TO_CART"
 export const INCREMENT = "INCREMENT"
 export const DECREMENT = "DECREMENT"
-export const CLEAR_FROM_CART = "CLEAR_FROM_CART"
+export const CLEAR_CART = "CLEAR_FROM_CART"
+export const DELETE_FROM_CART = "DELETE_FROM_CART"
 
 export const setCart = (product) => {
     return {
@@ -21,8 +22,15 @@ export const setDecrement = (productId) => {
         payload: productId
     }
 }
-export const setClear=() => {
+
+export const setDelete = (productId) => {
     return {
-        type: CLEAR_FROM_CART
+        type: DELETE_FROM_CART,
+        payload: productId
+    }
+}
+export const setClear = () => {
+    return {
+        type: CLEAR_CART
     }
 }
