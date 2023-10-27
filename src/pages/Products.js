@@ -8,7 +8,7 @@ const Products = () => {
     const dispatch = useDispatch();
 
     const handleAddToCart = (product) => {
-        console.log('click ...');
+      
         dispatch(setCart(product))
     }
    
