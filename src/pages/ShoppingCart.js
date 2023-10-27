@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setDecrement, setIncrement } from "../redux/cart/action";
+import { setClear, setDecrement, setIncrement } from "../redux/cart/action";
 
 const ShoppingCart = () => {
     const { cart } = useSelector((state => state.shoppingCart));
@@ -13,6 +13,9 @@ const ShoppingCart = () => {
     const handleDecrement = (productId) => {
 
         dispatch(setDecrement(productId))
+    }
+    const handleClearFromCart=()=>{
+        dispatch(setClear())
     }
     return (
         <div className="container">
@@ -72,7 +75,7 @@ const ShoppingCart = () => {
                             <tfoot>
                                 <tr>
                                     <td>
-                                        <a href="/" className="btn btn-dark">Clear Cart</a>
+                                        <button onClick={()=> handleClearFromCart()} className="btn btn-dark">Clear Cart</button>
                                     </td>
                                     <td colSpan="2" className="hidden-xs"></td>
                                     <td className="hidden-xs text-center" style={{ width: '15%' }}>

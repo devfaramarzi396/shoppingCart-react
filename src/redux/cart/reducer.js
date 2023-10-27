@@ -1,4 +1,4 @@
-import { ADD_TO_CART, INCREMENT, DECREMENT } from "./action";
+import { ADD_TO_CART, INCREMENT, DECREMENT, CLEAR_FROM_CART } from "./action";
 
 const initialState = {
     cart: []
@@ -20,7 +20,7 @@ const cartReducer = (state = initialState, action) => {
         case INCREMENT:
 
             state.cart = state.cart.map(p => p.id === action.payload ? { ...p, qty: p.qty += 1 } : p)
-            
+
 
             return {
                 ...state, cart: state.cart
@@ -36,6 +36,11 @@ const cartReducer = (state = initialState, action) => {
             console.log('dec', state.cart);
             return {
                 ...state, cart: state.cart
+            }
+        case CLEAR_FROM_CART:
+            return {
+                ...state,
+                cart: []
             }
 
         default:
