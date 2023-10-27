@@ -25,8 +25,8 @@ const ShoppingCart = () => {
             <div className="row mt-5">
                 <div className="col-lg-12 pl-3 pt-3">
                     {cart.length === 0 ?
-                        <div class="alert alert-warning" role="alert">
-                            <i class="bi bi-exclamation-triangle-fill"></i> The Shopping Cart is Empty
+                        <div className="alert alert-warning text-center w-50" role="alert">
+                            <i className="bi bi-exclamation-triangle-fill"></i> The Shopping Cart is Empty
                         </div>
                         :
 
@@ -42,7 +42,7 @@ const ShoppingCart = () => {
                             </thead>
                             <tbody>
                                 {cart && cart.map(product => (
-                                    <tr>
+                                    <tr key={product.id}>
                                         <td className="align-middle">
                                             <div className="row">
                                                 <div className="col-lg-2">
